@@ -21,7 +21,10 @@
 
 (define/provide-test-suite student-tests ;; DO NOT EDIT THIS LINE ==========
   ; TODO: Add your own tests below!
-  )
+  (test-equal? "Works with String primitive"
+               (eval '"Hello world!") (v-str "Hello world!"))
+  (test-equal? "Works with boolean primitive"
+               (eval 'true) (v-bool true)))
 
 ;; DO NOT EDIT BELOW THIS LINE =================================================
 
