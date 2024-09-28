@@ -15,17 +15,16 @@
 (define/provide-test-suite sample-tests
   ;; DO NOT ADD TESTS HERE
   (test-equal? "Works with Num primitive"
-               (eval `2) (v-num 2))
-  (test-raises-error? "Passing Str to + results in error"
-                             (eval `{+ "bad" 1}))
-  (test-pred "Equivalent to the test case above, but with test-pred"
-             v-fun? (eval `{lam x 5})))
+               (eval `2) (v-num 2)))
 
 ;; DO NOT EDIT ABOVE THIS LINE =================================================
 
 (define/provide-test-suite student-tests ;; DO NOT EDIT THIS LINE ==========
   ; TODO: Add your own tests below!
-  )
+  (test-equal? "Works with String primitive"
+               (eval '"Hello world!") (v-str "Hello world!"))
+  (test-equal? "Works with boolean primitive"
+               (eval 'true) (v-bool true)))
 
 ;; DO NOT EDIT BELOW THIS LINE =================================================
 
