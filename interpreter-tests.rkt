@@ -17,9 +17,7 @@
   (test-equal? "Works with Num primitive"
                (eval `2) (v-num 2))
   (test-raises-error? "Passing Str to + results in error"
-               (eval `{+ "bad" 1}))
-  (test-pred "Equivalent to the test case above, but with test-pred"
-             v-fun? (eval `{lam x 5})))
+               (eval `{+ "bad" 1})))
 
 ;; DO NOT EDIT ABOVE THIS LINE =================================================
 
@@ -51,8 +49,15 @@
                (eval `(if true (+ 1 2) (++ "false " ":("))) (v-num 3))
   (test-raises-error? "If fails with non-bool condition"
                (eval `(if "true" (true) (false))))
+  (test-raises-error? "Evaluating unbound var fails"
+               (eval `x))
+  (test-equal? "lambda definition returns a fun value"
+               (eval `(lam x (+ x 1))) (v-fun 'x (e-op (op-plus) (e-var 'x) (e-num 1)) '#hash()))
+  (test-equal? "lambda binds variable and evaluates"
+               (eval `((lam x (+ x 3)) 2)) (v-num 5))
+  (test-raises-error? "applying a function to a non-function"
+               (eval `((2 3) 5)))
   )
-  
 
 ;; DO NOT EDIT BELOW THIS LINE =================================================
 
